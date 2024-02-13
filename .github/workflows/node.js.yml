@@ -28,4 +28,6 @@ build:
         node-version: ${{ matrix.node-version }}
 
     - run: npm i
+    - run: mongod --dbpath=/data/db
+    - run: npm run dev 
     - run: npm test
