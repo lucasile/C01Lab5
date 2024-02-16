@@ -4,7 +4,9 @@
 node_modules/
 
 # database
-*/data
+*/data/
+*/data/db
+*/backend/data/
 
 # misc
 .DS_Store
