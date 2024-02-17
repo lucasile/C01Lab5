@@ -35,7 +35,7 @@ app.use(cors());
 // Collections to manage
 const COLLECTIONS = {
     notes: "notes",
-  };
+};
 
 
 // Get all notes available
@@ -44,12 +44,12 @@ app.get("/getAllNotes", express.json(), async (req, res) => {
     // Find notes with username attached to them
     const collection = db.collection(COLLECTIONS.notes);
     const data = await collection.find().toArray();
-    res.json({ response: [] });
+    res.json({ response: data });
   } catch (error) {
     res.status(500).json({error: error.message})
   }
 })
-  
+
 // Post a note
 app.post("/postNote", express.json(), async (req, res) => {
   try {
@@ -106,7 +106,7 @@ app.delete("/deleteNote/:noteId", express.json(), async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 })
-  
+
 // Patch a note
 app.patch("/patchNote/:noteId", express.json(), async (req, res) => {
   try {
@@ -124,7 +124,7 @@ app.patch("/patchNote/:noteId", express.json(), async (req, res) => {
         .json({ error: "Must have at least one of title or content." });
     }
 
-    
+
     // Find note with given ID
     const collection = db.collection(COLLECTIONS.notes);
     const data = await collection.updateOne({
